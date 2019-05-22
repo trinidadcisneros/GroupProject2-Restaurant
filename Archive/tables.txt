@@ -1,0 +1,57 @@
+Create new tables
+
+cuisines table:
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY
+cuisine_id INT(11)
+cuisine_name VARCHAR(255)
+
+
+restaurants
+ id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ res_id INT(20)
+ name VARCHAR(255),
+ FOREIGN KEY fk_cusine_id (cuisine_id),
+ FOREIGN KEY fk_cusine (cuisine_name)
+ REFERENCES cuisine(cuisine_id, cuisine_name)
+ ON UPDATE CASCADE
+ ON DELETE RESTRICT
+
+location
+ ID auto increment
+ FOREIGN KEY fk_res_id (res_id)
+ FOREIGN KEY fk_name (name)
+ lat DECIMAL(6,3),
+ lng DECIMAL(6,3),
+ REFERENCES restaurants(res_id, name)
+ ON UPDATE CASCADE
+ ON DELETE RESTRICT
+
+price
+ id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ FOREIGN KEY fk_res_id (res_id)
+ FOREIGN KEY fk_name (name),
+ ave_cost INT(4)
+ price_range INT(2)
+ REFERENCES restaurants(name, res_id)
+ ON UPDATE CASCADE
+ ON DELETE RESTRICT
+
+media
+ id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ FOREIGN KEY fk_res_id (res_id)
+ FOREIGN KEY fk_name (name),
+ menu VARCHAR(255),
+ featured_image VARCHAR(255),
+ REFERENCES restaurants(name, res_id)
+ ON UPDATE CASCADE
+ ON DELETE RESTRICT
+
+reviews
+ id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ FOREIGN KEY fk_res_id (res_id)
+ FOREIGN KEY fk_name (name),
+ rating DECIMAL(4,2)
+ vote INT(5),
+ REFERENCES restaurants(name, res_id)
+ ON UPDATE CASCADE
+ ON DELETE RESTRICT
