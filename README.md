@@ -1,4 +1,4 @@
-<strong>Project:</strong>
+<h1>Project:</h1>
 <ul>
 <li> A web-based tool to help individuals moving into the restaurant space gain market entry issues they may face in LA: primarily the competition, market size, the price ranges, and eventually, use machine learning techniques to point out restaurant features that result in success (restaurant lifecycle, customer reviews, price optimization etc).
 </ul>
