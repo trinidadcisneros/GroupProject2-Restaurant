@@ -46,8 +46,8 @@
 <ul>
   <li>@app.route("/"): renders template with default plot for all restaurants (unfiltered)</li>
   <li>@app.route("/cuisine_categories"): updates all plots when a cuisine category is selected from downdown menu</li>
-  <li>@app.route("/location"): plots restaurants using geographical rendering tools</li>
-  <li>@app.route("/bubble_plot"): plots the average price for 2 individuals versus rating for a given cuisine category</li>
+  <li>@app.route("/location"): plots restaurants using geographical rendering tools. Data structure: dictionary of json entries</li>
+  <li>@app.route("/bubble_plot"): plots the average price for 2 individuals versus rating for a given cuisine category. Data structure: dictionary of json entries</li>
 </ul>
 </ul>
 <li>Javascript file: app.js</li>
