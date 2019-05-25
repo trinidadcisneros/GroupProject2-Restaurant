@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-md-2">
         <div class="well">
-          <h5>SELECT Cuisine Category:</h5>
+          <h5>SELECT Cuisine:</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
         <div class="panel panel-primary">
@@ -48,7 +48,7 @@
   <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script type="text/javascript" src="app.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
 </body>
 

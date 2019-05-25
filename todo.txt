@@ -1,0 +1,30 @@
+Test Id in dataset: 16831684
+
+-Establishment id and establishment category exists!
+https://developers.zomato.com/api/v2.1/establishments?city_id=281
+
+
+Work on "#sample-metadata"
+-This panel will display the restaurant information for any restaurant that is selected
+from the map
+-will need to respond to the map selection
+-get the marker detail
+-add it to this section
+
+for now:
+-look at how hw15 feed metadata by js to website
+-hard code the restaurant entry
+
+-will need to hardcode to display on the index.html without having to do the go through the @app.route metadata/businessid because this opens up the json display and not the index html with the code.
+-look at hw15 again
+-the init function should give it the info it needs and then it will respond when selections are made by the user.
+
+
+UPDATE
+-create new function in js that gets the restaurant information from the map
+-this function will be in the init function
+-and will call on the metadata function and feed in the business Id
+
+Start with creating the route-
+hard coding a business_id
+put it in the init and see if this works
