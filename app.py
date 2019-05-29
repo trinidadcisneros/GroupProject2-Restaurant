@@ -86,36 +86,8 @@ def cuisine_categories():
     # return a list of column names (sample names)
     return jsonify(flat_list)
 
-
-@app.route("/metadata/<int:business_id>", methods=['GET'])
-def restaurant_metadata(business_id):
-    
-    # Step 1: filter by all tables
-
-
-    # Step 2: Run and store filtered query in results variable  
-    results = session.query(*sel).filter(restaurants.restaurant_id == cuisines.restaurant_id).filter(cuisines.restaurant_id == prices.restaurant_id).filter(prices.restaurant_id == media.restaurant_id).filter(media.restaurant_id == reviews.restaurant_id).filter(restaurants.restaurant_id == business_id).one()
-
-    # Step 3: build a dictionary for the restaurant record
-    restaurant_info = {
-        "restaurant_id" : int(results[0]),
-        "restaurant_name": results[1],
-        "restaurant_lat": float(results[2]),
-        "restaurant_lng": float(results[3]),
-        "cuisine_offerings": results[4],
-        "main_cuisine_category": results[5],
-        "price_range" :  int(results[6]),
-        "ave_cost" :  float(results[7]),
-        "menu_url" :  results[8],
-        "featured_image" :  results[9],
-        "nbr_votes" : float(results[10]),
-        "restaurant_rating" : float(results[11])
-    }
-
-    return jsonify(restaurant_info)
-
-@app.route("/cuisines/<cuisine_categories>", methods=['GET'])
-def cuisine_cagetgory_metadata(cuisine_categories):
+@app.route("/restaurants/<cuisine_categories>", methods=['GET'])
+def cuisine_category_metadata(cuisine_categories):
     # get cuisine category
     # filter all restaurants by category
     # get the first restaurant in this list
@@ -135,6 +107,33 @@ def cuisine_cagetgory_metadata(cuisine_categories):
         restaurants_by_cuisine.append(transformed_dict)
 
     return jsonify(restaurants_by_cuisine)
+
+@app.route("/restaurant/<int:business_id>", methods=['GET'])
+def restaurant_metadata(business_id):
+    
+    # Step 1: filter by all tables
+    sel = [restaurants.restaurant_id, restaurants.name, restaurants.lat, restaurants.lng, cuisines.cuisines, cuisines.cuisine_categories, prices.price_range, prices.ave_cost, media.menu_url, media.featured_image, reviews.vote, reviews.rating]
+
+    # Step 2: Run and store filtered query in results variable  
+    results = session.query(*sel).filter(restaurants.restaurant_id == cuisines.restaurant_id).filter(cuisines.restaurant_id == prices.restaurant_id).filter(prices.restaurant_id == media.restaurant_id).filter(media.restaurant_id == reviews.restaurant_id).filter(restaurants.restaurant_id == business_id).one()
+
+    # Step 3: build a dictionary for the restaurant record
+    restaurant_info = {
+        "Restaurant id" : int(results[0]),
+        "Name": results[1],
+        # "restaurant_lat": float(results[2]),
+        # "restaurant_lng": float(results[3]),
+        "Options": results[4],
+        "Category": results[5],
+        "Price ($) " :  int(results[6]),
+        "Average Cost ($) " :  float(results[7]),
+        # "menu_url" :  results[8],
+        # "featured_image" :  results[9],
+        "Nbr of Votes" : float(results[10]),
+        "Rating (Out of 5) " : float(results[11])
+    }
+
+    return jsonify(restaurant_info)
 
 
 if __name__ == "__main__":

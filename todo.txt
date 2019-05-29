@@ -28,3 +28,27 @@ UPDATE
 Start with creating the route-
 hard coding a business_id
 put it in the init and see if this works
+
+  d3.json("/restaurants/<cuisine_categories>").then((cuisineCategory) => {
+    cuisineCategory.forEach((sample) => {
+      panel
+    .append("option")
+    .text(sample)
+    .property("value", sample);
+  });
+    // Use the first sample from the list to build the initial plots
+    const firstSample = cuisineCategory[0];
+    // buildCharts(firstSample); <- will be the cuisine vs ratings plot
+    buildMetadata(firstSample);
+
+
+
+      // will get the information from the filtered restaurants by category
+  // will then get the first value
+  d3.json("/restaurants/<cuisine_categories>").then((cuisineCategory) => {
+    cuisineCategory.forEach((sample) => {
+      panel
+    .append("option")
+    .text(sample)
+    .property("value", sample);
+  });
