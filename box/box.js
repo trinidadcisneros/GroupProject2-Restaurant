@@ -16,9 +16,22 @@
     //var data = [12,19,11,13,12,22,13,4,15,16,18,19,20,12,11,9]
     d3.json("local.json", function(data) {
       //console.log(data);
+      var cuisine = []
       for (var i = 0; i < data.length; i++) {
-          var  cuisine= data[i].main_cuisine_category
+          cuisine.push(data[i].main_cuisine_category)
       };
+ 
+      function removeDuplicates(arr){
+          var uniquecuisine = []
+          for(var i = 0;i < arr.length; i++){
+              if(uniquecuisine.indexOf(arr[i]) == -1){
+                uniquecuisine.push(arr[i])
+              }
+          }
+          return uniquecuisine
+      }
+      
+
       // Compute quartiles, median, inter quantile range min and max --> these info are then used to draw the box.
       var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
         .key(function(d) { return d.main_cuisine_category;})
@@ -31,17 +44,17 @@
           max = q3 + 1.5 * interQuantileRange
           return({q1: q1, median: median, q3: q3, interQuantileRange: interQuantileRange, min: min, max: max})
         })
-        .entries(data)
+        .entries(data);
     
       // Show the X scale
       var x = d3.scaleBand()
         .range([ 0, width ])
-        .domain([cuisine])
+        .domain(removeDuplicates(cuisine))
         .paddingInner(1)
-        .paddingOuter(.5)
+        .paddingOuter(.5);
       svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
+        .call(d3.axisBottom(x));
     
       // Show the Y scale
       var y = d3.scaleLinear()
@@ -97,7 +110,7 @@
         .append("circle")
           .attr("cx", function(d){return(x(d.main_cuisine_category) - jitterWidth/2 + Math.random()*jitterWidth )})
           .attr("cy", function(d){return(y(d.ave_cost))})
-          .attr("r", 4)
+          .attr("r", 5)
           .style("fill", "white")
           .attr("stroke", "black")
     });
