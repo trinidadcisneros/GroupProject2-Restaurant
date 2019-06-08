@@ -1,6 +1,10 @@
 <h1>Project:</h1>
 <ul>
+<<<<<<< HEAD
 <li> A web-based tool to help individuals moving into the restaurant space gain market entry issues they may face in LA: primarily the competition, market size, the price ranges, and eventually, use machine learning techniques to point out restaurant features that result in success (restaurant lifecycle, customer reviews, price optimization etc).
+=======
+<li> A web-based consultation tool that provides restaurants business intelligence, in particular, competition.  The customer demographics would be new restaurants, and partities interested in market entry issues, and the general restaurant industry in a given area. In this project, LA is used as a pilot, where the following measures will be analyze:  competition, market size, and average price of meals for 2 individuals.  In the future, we would provide a machine learning element to point out restaurant features that are assocaited with success (restaurant lifecycle, customer reviews, price optimization etc), so that these can be used as models for new restaurants.
+>>>>>>> 3f4b46b3665768faa3ba06f990fd1efdfa40311e
 </ul>
 
 <strong>Project Objectives:</strong>
@@ -53,3 +57,7 @@
 <li>Javascript file: app.js</li>
 <li>webpage: index.html: template from the belly button homework assignment</li>
   
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3f4b46b3665768faa3ba06f990fd1efdfa40311e

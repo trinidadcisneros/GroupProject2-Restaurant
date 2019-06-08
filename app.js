@@ -1,24 +1,3 @@
-// Builds map with markers for restaurants
-function buildMap(cuisine_category) {
-  d3.json(`restaurants/${cuisine_category}`).then((data) => {
-    var restaurant_lng = [];
-    var restaurant_lat = [];
-    data.forEach((d) => { 
-      Object.entries(d).forEach(([key, value]) => {
-        if (key === "restaurant_lat") {
-          restaurant_lat.push(value);
-        } if (key === "restaurant_lng") {
-          restaurant_lng.push(value);
-        } else {
-        }
-      });
-    });
-    console.log(restaurant_lng);
-    console.log(restaurant_lat);
-
-  });
-}
-
 
 // Will provide restaurant informaiton in side panel
 function buildMetadata(business_id) {
@@ -35,27 +14,21 @@ function buildMetadata(business_id) {
 function getBusinessId(cuisine_category) {
     // Add the metadata for restaurant at init
     d3.json(`/restaurants/${cuisine_category}`).then(function (data) {
+      console.log(data);
       first_restaurant_in_category = data[0]["restaurant_id"];
       console.log(first_restaurant_in_category);
       buildMetadata(first_restaurant_in_category);
     });
 }
 
+
+
 function buildChart(cuisine_category) {
 
-  d3.json(`/restaurants/${cuisine_category}`).then(function (data) {
-    var ratings = [];
-    var ave_cost = [];
-    data.forEach((d) => { 
-      Object.entries(d).forEach(([key, value]) => {
-        if (key === "restaurant_rating") {
-          ratings.push(value);
-        } if (key === "ave_cost") {
-          ave_cost.push(value);
-        } else {
-        }
-      });
-    });
+  d3.json(`/restaurants/${cuisine_category}`).then((data) => {
+    var ratings = data.restaurant_rating;
+    var ave_cost = data.ave_cost;
+    console.log(data);
     console.log(ratings);
     console.log(ave_cost);
 
@@ -71,15 +44,10 @@ function buildChart(cuisine_category) {
 
     var data1 = [trace1];
     
-    // var layout = {
-    //   title: "Average Cost (for two) versus Rating",
-    //   xaxis: { title : "Restaurant Rating"},
-    //   yaxis: { title : "Average cost for two ($)"}
-    // };
-    
     Plotly.plot("bubble", data1);
   });
 }
+
 
 
 function init() {
@@ -108,14 +76,18 @@ function init() {
   });
 }
 
-  // Fetch new data each time a new sample is selected
 function optionChanged(newSample) {
+  // Fetch new data each time a new sample is selected
   // Plotly.deleteTraces('bubble', 0);
   console.log(newSample);
+
+
+  // Plotly.deleteTraces('pie', 0);will have leaflet map
+  // div.html("") for leaflet to clear map
+  // buildCharts(newSample);
   getBusinessId(newSample);
-  buildChart(newSample);
-  buildMap(newSample);
-  
+  buildCharts(newSample);
+  // buildMetadata(newSample);
 
 }
 
