@@ -36,7 +36,7 @@ function getRestaurantID(cuisine_category) {
       console.log(restaurant_id);
       buildMetadata(restaurant_id);
       initiatlizeChart(data);
-      buildMaps(data); 
+      initializeMap(data);
     });
 }
 
@@ -120,6 +120,5 @@ function optionChanged(newSelection) {
     console.log(newSelection);
     getRestaurantID(newSelection);
 }
-
 
 init();
