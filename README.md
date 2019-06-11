@@ -30,13 +30,12 @@
 </ul>
 
 <Strong>Methods (Developer Mode):</strong>
-<h2>jn file (Jupyter Notebook)</h2>
+<h2>RestaurantNew folder</h2>
+<h2>Run the Extract and Load jn file (Jupyter Notebook)</h2>
 <h2>Extract Data</h2>
 <ul>
 <li>API call to extract the restaurant dataset: extract_transform_restaurant_dict.ipynb</li>
-<li>API call to extract the cuisine category dataset: extract_transform_cuisines_dict.ipynb</li>
 <li>Connect to Mysql, create db, and tables, and load data using sqlalchemy: load_data_to_mysqyl.ipynb</li>
-<li>To view the sql script to go this directory: ./Resources/restaurantdb.sql</li>
 </ul>
 <h2>Load and Update Dashboard interface</h2>
 <ul>
